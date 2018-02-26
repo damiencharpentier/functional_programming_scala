@@ -1,0 +1,29 @@
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_3/MyTree.scala:22:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: NilTree[0m
+[0m[[0m[33mwarn[0m] [0m[0m    tree match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_3/MyTree.scala:49:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: NilTree[0m
+[0m[[0m[33mwarn[0m] [0m[0m    tree match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_3/MyTree.scala:88:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: NilTree[0m
+[0m[[0m[33mwarn[0m] [0m[0m    tree match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_3/MyTree.scala:125:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: NilTree[0m
+[0m[[0m[33mwarn[0m] [0m[0m    tree match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_3/MyTree.scala:165:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: NilTree[0m
+[0m[[0m[33mwarn[0m] [0m[0m    tree match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_4/Option.scala:126:90: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: None[0m
+[0m[[0m[33mwarn[0m] [0m[0m    a.foldRight[Option[List[A]]](Some(List()))((elem: Option[A],acc: Option[List[A]]) => acc match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                                                                         ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/damiencharpentier/IdeaProjects/functional_programming_book/src/main/scala/chapter_3/MyList.scala:16:8: List has a main method with parameter type Array[String], but main.chapter_3.List will not be a runnable program.[0m
+[0m[[0m[33mwarn[0m] [0m[0m  Reason: companion is a trait, which means no static forwarder can be generated.[0m
+[0m[[0m[33mwarn[0m] [0m[0mobject List {[0m
+[0m[[0m[33mwarn[0m] [0m[0m       ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m7 warnings found[0m

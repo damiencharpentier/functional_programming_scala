@@ -1,0 +1,7 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mStreamTesting:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Transforming empty stream to list should be equal to an empty list[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Transforming stream with only one element = 'a' should be equal to a list of a single element = 'a'[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- dropping one element of a stream of one element should equal to an empty list[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- taking one element of a stream of 'a' and 'b' elements should equal to list containing 'a' as element[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- taking while elements from the stream that equals 'a' should equal to list containing 'a' as element[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- taking while elements from the stream that equals 'c' should equal to empty list[0m[0m
