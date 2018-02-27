@@ -1,4 +1,4 @@
-package main.chapter_4
+package chapter_4
 
 /**
   * Created by damiencharpentier on 17-11-27.

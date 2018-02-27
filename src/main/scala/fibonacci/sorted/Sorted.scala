@@ -1,4 +1,4 @@
-package main.fibonacci.sorted
+package fibonacci.sorted
 
 import scala.annotation.tailrec
 

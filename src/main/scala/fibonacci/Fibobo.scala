@@ -1,4 +1,4 @@
-package main.fibonacci
+package fibonacci
 
 import scala.annotation.tailrec
 

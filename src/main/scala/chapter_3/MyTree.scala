@@ -1,4 +1,4 @@
-package main.chapter_3
+package chapter_3
 
 import scala.Int;
 import scala.annotation.tailrec
