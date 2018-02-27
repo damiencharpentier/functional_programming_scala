@@ -70,6 +70,44 @@ sealed trait Stream[+A] {
     }
   }
 
+  /**
+    * Exercise 5.4
+    * evaluate predicate for each element of the stream.
+    * Stops when first predicate evaluation returns false or at the end of the list
+    * @param p
+    * @return
+    */
+  def forAll(p: A => Boolean): Boolean = {
+    this match {
+        case Empty => true
+        case Cons(hd, tl) => p(hd()) && tl().forAll(p)
+    }
+  }
+
+  /**
+    * FoldRight on Stream
+    * @param default
+    * @param f
+    * @tparam B
+    * @return
+    */
+  def foldRight[B](default: Stream[B])(f: (A, Stream[B]) => Stream[B]) : Stream[B] = {
+
+    this match{
+      case Cons(h,t) => f(h(),t().foldRight(default)(f))
+      case _ => default
+    }
+
+  }
+
+  /**
+    * Exercise 5.5
+    * use foldRight to implement takeWhile
+    */
+  def takeWhileFoldRight(p: A => Boolean): Stream[A] = {
+    this.foldRight(Stream.empty)((elem: A, tail: Stream[A]) => if(!p(elem)){ tail } else { Stream.cons(elem,tail) })
+  }
+
 }
 
 case object Empty extends Stream[Nothing]

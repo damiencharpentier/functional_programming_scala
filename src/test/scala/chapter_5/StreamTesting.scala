@@ -35,4 +35,29 @@ class StreamTesting extends FunSuite {
     assert(st.takeWhile( _ == "c" ).toList() == List.empty)
   }
 
+  test("stream of 1 2 3 contains odd elements") {
+    val st = Stream.cons(1,Stream.cons(2,Stream.cons(3,Stream.empty)))
+    assert(!st.forAll( _ % 2 == 0))
+  }
+
+  test("stream of 2 4 6 8 contains only even elements") {
+    val st = Stream.cons(2,Stream.cons(4,Stream.cons(6,Stream.cons(8,Stream.empty))))
+    assert(st.forAll( _ % 2 == 0))
+  }
+
+  test("taking while elements using fold right from the stream that equals 'a' should equal to list containing 'a' as element") {
+    val st = Stream.cons("a",Stream.cons("b",Stream.empty))
+    assert(st.takeWhileFoldRight( _ == "a" ).toList() == List("a"))
+  }
+
+  test("taking while elements using fold right from the stream that equals 'a' or 'b' should equal to list containing 'a' and 'b' as elements") {
+    val st = Stream.cons("a",Stream.cons("b",Stream.empty))
+    assert(st.takeWhileFoldRight( c => (c == "a" || c == "b") ).toList() == List("a","b"))
+  }
+
+  test("taking while elements using fold right from the stream that equals 'c' should equal to empty list") {
+    val st = Stream.cons("a",Stream.cons("b",Stream.empty))
+    assert(st.takeWhileFoldRight( _ == "c" ).toList() == List.empty)
+  }
+
 }
