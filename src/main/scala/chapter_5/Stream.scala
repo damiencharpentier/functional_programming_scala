@@ -1,5 +1,6 @@
 package chapter_5
 
+
 /**
   * Created by damiencharpentier on 18-02-20
   */
@@ -108,6 +109,40 @@ sealed trait Stream[+A] {
     this.foldRight(Stream.empty)((elem: A, tail: Stream[A]) => if(!p(elem)){ tail } else { Stream.cons(elem,tail) })
   }
 
+  /**
+    * Exercise 5.7
+    * map method
+    */
+  def map[B](f: A => B): Stream[B] = {
+    this.foldRight(Stream.empty: Stream[B])((elem, tail) => Stream.cons(f(elem),tail))
+  }
+
+  /**
+    * Exercise 5.7
+    * filter method
+    */
+  def filter(f: A => Boolean): Stream[A] = {
+    this.foldRight(Stream.empty: Stream[A])((elem, tail)=> if(!f(elem)) tail else Stream.cons(elem,tail))
+  }
+
+  /**
+    * Exercise 5.7
+    * append another stream to this one
+    *
+    */
+  def append[B >: A](other: Stream[B]): Stream[B] = {
+    this.foldRight(other)((elem, tail) => Stream.cons(elem, tail))
+  }
+
+  /**
+    * Exercise 5.7
+    *
+    * flatMap using foldRight
+    *
+    */
+  def flatMap[B](f: A => Stream[B]): Stream[B] = {
+    foldRight[B](Stream.empty : Stream[B])((elem, tail)=> f(elem).append(tail))
+  }
 }
 
 case object Empty extends Stream[Nothing]

@@ -60,4 +60,26 @@ class StreamTesting extends FunSuite {
     assert(st.takeWhileFoldRight( _ == "c" ).toList() == List.empty)
   }
 
+  test("map using foldRight, add 1 to each element") {
+    val st = Stream.cons(1,Stream.cons(2,Stream.cons(4,Stream.empty)))
+    assert(st.map[Int](x => x + 1).toList() == List(2,3,5))
+  }
+
+  test("filter using foldRight, keep only odd elements") {
+    val st = Stream.cons(1,Stream.cons(2,Stream.cons(4,Stream.empty)))
+    assert(st.filter(x => x % 2 == 1).toList() == List(1))
+  }
+
+
+  test("append using foldRight") {
+    val st = Stream.cons(1,Stream.cons(2,Stream.cons(4,Stream.empty)))
+    val st2 = Stream.cons(10,Stream.cons(11,Stream.cons(12,Stream.empty)))
+    assert(st.append(st2).toList() == List(1, 2, 4, 10, 11, 12))
+  }
+
+
+  test("flatmap using foldRight") {
+    val st = Stream.cons(1,Stream.cons(2,Stream.cons(4,Stream.empty)))
+    assert(st.flatMap[Int](elem => Stream.cons(elem + 1, Stream.empty)).toList() == List(2, 3, 5))
+  }
 }
