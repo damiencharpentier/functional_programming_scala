@@ -1,7 +1,5 @@
 package chapter_4
 
-import main.chapter_4.{None, Option, Some}
-
 sealed trait Either[+E, +A] {
 
   /**
