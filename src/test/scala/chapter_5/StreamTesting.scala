@@ -82,4 +82,5 @@ class StreamTesting extends FunSuite {
     val st = Stream.cons(1,Stream.cons(2,Stream.cons(4,Stream.empty)))
     assert(st.flatMap[Int](elem => Stream.cons(elem + 1, Stream.empty)).toList() == List(2, 3, 5))
   }
+
 }

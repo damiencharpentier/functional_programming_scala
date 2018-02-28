@@ -143,6 +143,13 @@ sealed trait Stream[+A] {
   def flatMap[B](f: A => Stream[B]): Stream[B] = {
     foldRight[B](Stream.empty : Stream[B])((elem, tail)=> f(elem).append(tail))
   }
+
+
+  def forEach(f: A => Unit): Unit = {
+    this match {
+        case Cons(head,_) => f(head())
+    }
+  }
 }
 
 case object Empty extends Stream[Nothing]
@@ -171,6 +178,41 @@ object Stream {
 
   def apply[A](as: A*): Stream[A] = {
     if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
+  }
+
+  /**
+    * Returns an infinite Stream of the given value
+    * (From book answers)
+    * @param a
+    * @tparam A
+    * @return
+    */
+  def constant[A](a: A): Stream[A] = {
+    lazy val tail: Stream[A] = Cons(() => a, () => tail)
+    tail
+  }
+
+  /**
+    * Exercise 5.9
+    * @param n
+    * @return
+    */
+  def from(n: Int): Stream[Int] = {
+    Stream.cons(n, from(n+1))
+  }
+
+  /**
+    * Exercise 5.10
+    * Use infinite Stream to generate Fibonacci number
+    * TODO does not seem to work...
+    */
+  def fibs: Stream[Int] = {
+
+    def go (first: Int, second: Int): Stream[Int] = {
+      go(second, first + second)
+    }
+
+    Stream.cons(0,cons(1, go(1,1)))
   }
 
 }
