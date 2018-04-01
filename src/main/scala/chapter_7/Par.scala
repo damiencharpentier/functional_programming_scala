@@ -10,9 +10,9 @@ object Par {
 
   def run[A](s: ExecutorService)(a: Par[A]): Future[A] = a(s)
 
-  def unit[A](a: A): Par[A] = ???
+  def unit[A](a: A): Par[A] = (es: ExecutorService) => UnitFuture(a)
 
-  def lazyAnit[A](a: A): Par[A] = fork(unit(a))
+  def lazyUnit[A](a: A): Par[A] = fork(unit(a))
 
   private case class UnitFuture[A](get: A) extends Future[A]
  {
@@ -40,12 +40,23 @@ object Par {
     }
   }
 
-  def fork[A](es: ExecutorService)(a: => Par[A]): Par[A] = {
-    es => {
+  def fork[A](a: => Par[A]): Par[A] = {
+    es: ExecutorService => {
       es.submit(new Callable[A]{
         def call = a(es).get()
       })
     }
+  }
+
+  /** exercise 7.3
+    *
+    * @param f
+    * @tparam A
+    * @tparam B
+    * @return
+    */
+  def asyncF[A,B](f: A => B): A => Par[B] = {
+    a: A => lazyUnit(f(a))
   }
 
 
