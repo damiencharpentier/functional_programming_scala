@@ -1,6 +1,6 @@
 package chapter_7
 
-import java.util.concurrent.{ExecutorService, Future, TimeUnit}
+import java.util.concurrent.{Callable, ExecutorService, Future, TimeUnit}
 
 sealed trait Par[A]
 
@@ -13,8 +13,6 @@ object Par {
   def unit[A](a: A): Par[A] = ???
 
   def lazyAnit[A](a: A): Par[A] = fork(unit(a))
-
-  def fork[A](a: => Par[A]): Par[A] = ???
 
   private case class UnitFuture[A](get: A) extends Future[A]
  {
@@ -39,6 +37,14 @@ object Par {
       val af = a(es)
       val bf = b(es)
       UnitFuture(f(af.get(),bf.get()))
+    }
+  }
+
+  def fork[A](es: ExecutorService)(a: => Par[A]): Par[A] = {
+    es => {
+      es.submit(new Callable[A]{
+        def call = a(es).get()
+      })
     }
   }
 
