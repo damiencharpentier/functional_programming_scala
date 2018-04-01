@@ -150,4 +150,35 @@ object PureApi {
 
   val randDoubleInt: Rand[(Double, Int)] = both(double, int)
 
+
+  /**
+    * 6.8
+    * @param f
+    * @param g
+    * @tparam A
+    * @tparam B
+    * @return
+    */
+  def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = {
+    rng => {
+      val (a, rng2) = f(rng)
+      (g(a)(rng2))
+    }
+  }
+
+
+  /**
+    * exervice 6.9
+    *
+    */
+  def mapWithFlatMap[A, B](s: Rand[A])(f: A => B): Rand[B] = {
+    flatMap(s)((a => unit(f(a))))
+  }
+
+
+  def map2WithFlatMap[A, B, C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = {
+    flatMap(ra)(a => map(rb)(b => (f(a,b))))
+
+  }
+
 }
